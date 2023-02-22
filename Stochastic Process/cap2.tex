@@ -1,0 +1,185 @@
+\chapter{Conditional expectation}
+\vspace*{0.5cm}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\section{Conditional expectations}
+
+In order to give a proper definition of conditional expectations, three ingredients are necessary:
+\begin{enumerate}
+    \item A sample space, $(\Omega, \mathcal{A}, \mathcal{P})$
+    \item A sub-$\sigma$-field of $\mathcal{A}$: $\mathcal{G}$ $\subset$ $\mathcal{A}$ 
+    \item A real random variable $X$ such that $E|X|< +\infty$.
+\end{enumerate}
+Now, let's define a conditional expectation:
+\begin{definition}
+    A conditional expectation of $X$ given $\mathcal{G}$ is any real random variable $V: \Omega \Rightarrow \mathcal{R}$ such that:
+    \begin{enumerate}
+        \item $E(|V|) < +\infty$
+        \item $V$ is $\mathcal{G}$-measurable
+        \item $E(\mathbbm{1_A} \cdot X)$ $=$ $E(\mathbbm{1_A} \cdot V)$ $\forall A$ $\in$ $\mathcal{G}$  
+    \end{enumerate}
+\end{definition}
+Where, on the third point we have,
+\begin{equation}
+        X \cdot \mathbbm{1_A} =\begin{cases}
+         $X$, \text{on $A$}\\
+         $0$, \text{on $A^c$.}
+\end{cases}
+\end{equation}
+In particular, since $\Omega \in \mathcal{G}$, we obtain:\\
+\begin{center}
+    $E(X)$ $=$ $E(X \cdot \mathbbm{1_\Omega})$ $= E(V \cdot \mathbbm{1_\Omega})$ $= E(V)$ %correct indicator function with Omega
+\end{center}
+
+We need to make a second remark on the second condition stated in the definition: a random variable $V$ is said to be $\mathcal{G}$-measurable if 
+\begin{center}
+    $V^{-1}(B) \in \mathcal{G}$ $\forall B \in \mathcal{B}\mathcal{R}$
+\end{center}
+In other terms, $V$ is a random variable not only in the "big" probability space $(\Omega, \mathcal{G}, \mathcal{P})$ but also in the "small" probability space $(\Omega, \mathcal{G}, \mathcal{P})$.
+\\
+For instance, take the set $\mathcal{G} = \{\varnothing, \Omega\}$ (null information), then if $X$ is $\mathcal{G}$-measurable, it must be that 
+\begin{center}
+    $X^{-1}(B) = \Omega$ or $X^{-1}(B)=\varnothing$ $\forall B \in \mathcal{B}
+(\mathcal{R})$
+\end{center}
+Hence, with the set taken the only $\mathcal{G}$-measurable random variables are the constants. \\
+At the opposite extreme, if $\mathcal{G} = \mathcal{A}$, then every random variable is $G$-measurable.\\ 
+However, the interpretation of $\mathcal{G}$-measurability is under the information $\mathcal{G}$, so a $\mathcal{G}$-measurable random variable reduces to a constant: suppose we have a random variable $X$ that is $\mathcal{G}$-measurable for some sub-$\sigma$-field $\mathcal{G}$. Intuitively, this means that $X$ behaves like a constant, because its value can be determined from the information in $\mathcal{G}$: let's see with an example why this is true.
+\begin{example}
+    Fix $A$ $\in \mathcal{A}$ and define 
+    \begin{itemize}
+        \item $\mathcal{G}=\{\varnothing, \Omega, A, A^c\}$
+        \item $X = 3\mathbbm{1_A}- 2\mathbbm{1_{A^c}}$
+    \end{itemize}
+Then, $X$ is $\mathcal{G}$-measurable:
+\begin{equation}
+    X^{-1}(B)= \begin{cases}
+        \Omega, \text{if $-2,3$ $\in \mathcal{B}$}\\
+        \varnothing, \text{if $-2,3 \notin \mathcal{B}$}\\
+        A, \text{if $3 \in \mathcal{B}$ and $-2 \notin \mathcal{B}$}\\
+        A^c, \text{if $3 \notin \mathcal{B}$ and $-2 \in \mathcal{B}$}
+    \end{cases}
+\end{equation}
+But, under the information of $\mathcal{G}$, we know whether $A$ is $True$ or $False$, thus $X$ becomes a constant.
+\end{example}
+
+\begin{theorem}[Theorem]
+A conditional expectation $V$ always exists, and it is almost surely unique, namely, if $V_1$ and $V_2$ are both conditional expectations, then $P(V_1 \neq V_2)=0$ or, equivalently, $P(V_1 = V_2) = 1$
+\end{theorem}
+From now on, to denote a conditional expectation of $X$ given $\mathcal{G}$, we adopt the notation $E(X|\mathcal{G})$, namely $V=E(X|\mathcal{G})$.\\
+The interpretation is that the expected value is our prediction of $X$ under the information $\mathcal{G}$: in the special case where $V=E(X)$, the natural interpretation is that $E(X)$ is our prediction of $X$without any specific information. \\
+Now, should be more clear why $E(X|\mathcal{G})$ should be $\mathcal{G}$-measurable: in fact, our prediction of $X$ under the information $\mathcal{G}$ should be something which only depends on the information $\mathcal{G}$.
+
+\subsection{Best predictor?}
+In general, to make a prediction, we are not only interested in finding a good predictor, but it would be better to find the $\mathbf{best}$ predictor: don't worry, we already find it!
+Yes, $E(X|\mathcal{G})$ is the best prediction we can make in the following sense:
+\begin{itemize}
+    \item Suppose $E(X^2) < +\infty$ : then, 
+\end{itemize}
+\begin{center}
+    $E\{(X-(E(X|\mathcal{G}))^2\}$ $= \min E\{(X-Z)^2\}$ 
+\end{center}
+We can think of $Z$ as a predictor of $X$ under the information $\mathcal{G}$ 
+%to complete this part, didn't fully understood the notation and other things...
+
+\subsection{Properties}
+There are 7 useful properties of the conditional expectation:
+\begin{enumerate}
+    \item Linearity: $E(aX + bY | \mathcal{G}) = aE(X|\mathcal{G})+bE(Y|\mathcal{G})$
+    \item Positivity: if $X \geq 0$ $\rightarrow$ $E(X|\mathcal{G}) \geq 0$ 
+    \item Constant: $E(constant | \mathcal{G}) = constant$ 
+    \item Measurability: if $Z$ is $\mathcal{G}$-measurable, then $E(X\cdot Z| \mathcal{G}) = Z \cdot E(X | \mathcal{G})$ \\
+It follows that, if $X$ is $\mathcal{G}$-measurable, then
+\begin{center}
+    $E(X|\mathcal{G}) = E(X\cdot 1 | \mathcal{G})$ $= X \cdot E(1 | \mathcal{G}) = X \cdot 1 = X$ 
+\end{center}
+    \item Independence: $X$ is said to be independent from $\mathcal{G}$ , by definition, if
+\begin{center}
+    $P(A, X \in B) = P(A) \cdot P(X \in B) \forall A \in \mathcal{G} \forall B \in \mathcal{B}(\mathcal{R})$ 
+\end{center} 
+If $X$ is independent from $\mathcal{G}$, then $E(X|\mathcal{G}) = E(X)$
+    \item Chain rule: if $\mathcal{G_1}$ $\subset$ $\mathcal{G_2}$ $\subset$ $\mathcal{A}$, then $E(X | \mathcal{G_1}) = E(E(X|\mathcal{G_2}) |\mathcal{G_1})$.\\
+    For instance if we know that $E(X|\mathcal{G_2})=0$, then\\
+    $E(X|\mathcal{G_1}) = E(E(X|\mathcal{G_2})|\mathcal{G_1}) = E(0 | \mathcal{G_1})=0$ 
+    \item Conditional probability: if $A \in \mathcal{A}$, we can define 
+    \begin{center}
+        $P(A|\mathcal{G}) = E(\mathbbm{1_A}|\mathcal{G})$ 
+    \end{center}
+\end{enumerate}
+
+An example is the following:
+\begin{example}
+    If $A$ and $B$ $\in \mathcal{A}$ and $P(B)>0$,
+    \begin{center}
+        $P(A|B) = \frac{P(A \And B}{P(B)}$
+    \end{center}
+    Despite this condition is well-known, a nice connection between this elementary definition and the general notion of conditional probability can be done.\\
+    In fact, the elementary definition is actually a special case of the general definition of probability conditional to a $\sigma$-field $\mathcal{G}$: let us take the following $\sigma$-field $\mathcal{G}= \{\varnothing, \Omega, B, B^c \}$\\
+    It can be shown that if $f: \Omega \rightarrow \mathcal{R}$ is $\mathcal{G}$-measurable, then:
+    %\begin{center}
+        %\begin{equation}
+          %  f = \begin{cases}
+            %    $\alpha$ $\text{on B}$\\
+              %  $\beta$  $\text{on B^c}$
+                % \end{cases}
+        %\end{equation}
+    %\end{center}
+
+for some constants $\alpha$ and $\beta$.\\
+Hence, 
+\begin{center}
+    $P(A|\mathcal{G})= \alpha \cdot \mathbbm{1_B} + \beta \cdot \mathbbm{1_{B^c}}$,
+\end{center}
+but,
+\begin{center}
+    $E \{P(A|\mathcal{G})\cdot \mathbbm{1_D}\}$ $= E\{\mathbbm{1_A}\cdot\mathbbm{1_D}\}$ $\forall D \in \mathcal{G}$.
+\end{center}
+So, taking $D=B$, we get
+\begin{center}
+    $E\{\mathbbm{1_A}\cdot \mathbbm{1_B}\}$ $=E{\mathbbm\{1_{A \bigcap B }\}}$ $=P(A \cap B)$ 
+\end{center}
+Hence, 
+\begin{center}
+    $E \{P(A|\mathcal{G})\cdot \mathbbm{1_B}\}$ $=E{\alpha \cdot \mathbbm{1_B}} = \alpha \cdot E\{\mathbbm{1_B}\} = \alpha \cdot P(B)$
+\end{center}
+It follows that, 
+\begin{center}
+    $\alpha = \frac{P(A \bigcap B)}{P(B)}= P(A|B)$
+\end{center}
+Similarly, one obtain 
+\begin{center}
+    $\beta = P(A | B^c)$, provided that $P(B^c) > 0$
+\end{center}
+In short,
+\begin{center}
+    $P(A|\mathcal{G}) = P(A|B) \cdot \mathbbm{1_B} + P(A|B^c) \cdot \mathbbm{1_{B^c}} $
+\end{center}
+\end{example}
+
+Usually, we write $E(X|Y)$ to denote $E(X|\sigma(y))$, namely $E(X|Y)=E(X|\sigma(y))$: $\sigma(y)$ is the least field which makes $Y$ measurable.\\
+In short, when we have a random variable $Y$, $\sigma(Y)$ is the smallest $\sigma$-field making $Y$ measurable. \\
+Let's make another (more simple) example:
+\begin{example}
+    Let $Y, X$ be $iid$ with $E|X|<+\infty$. What about $E(X|X+Y)$?\\
+    It can be shown that 
+    \begin{center}
+        $E(X | X+Y) = \frac{X+Y}{2}$
+    \end{center}
+    because
+    \begin{itemize}
+        \item $\frac{X+Y}{2}$ has the mean
+        \item $\frac{X+Y}{2}$ is measurable with respect to $\sigma(X+Y)$
+        \item $E(X\cdot\mathbbm{1_A}) = E(\frac{X+Y}{2}\cdot\mathbbm{1_A})$
+    \end{itemize}
+    
+\end{example}
+
+
+
+
+
+
+
+
+

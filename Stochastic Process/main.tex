@@ -1,0 +1,169 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{amssymb,amsmath}
+\usepackage[]{graphicx} \graphicspath{ {Fig/} }
+\usepackage{caption}
+\usepackage[]{xcolor}
+\usepackage{booktabs, multirow}
+\usepackage[colorlinks,linkcolor=black,urlcolor=blue,citecolor=gray]{hyperref}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{amsthm}
+\usepackage{bbm}
+\theoremstyle{definition} %definisce lo stile dell'ambiente "example"
+\newtheorem{example}{Example}[section] %crea un nuovo ambiente "example"
+\newtheorem{definition}{Definition}[section] %crea un nuovo ambiente "definition"
+\newtheorem{theorem}{Theorem}[section]
+
+
+
+\usepackage[italian, english]{babel}  %%% !!! Cancellare 'english' per avere "Sommario, Capitolo..." !!!
+
+%------------------------------------------------------------------------------------
+\newcommand{\eg}{\`e}
+\newcommand{\ea}{\'e}
+\newcommand{\Eg}{\`E}
+\newcommand{\og}{\`o}
+\newcommand{\ag}{\`a}
+\newcommand{\ug}{\`u}
+\newcommand{\ig}{\`{\i}}
+\newcommand{\R}{\textsf{R}}
+\newcommand{\Fortran}{\textsf{Fortran}}
+%------------------------------------------------------------------------------------
+\definecolor{MyGray}{rgb}{0.30,0.31,0.32} % definizione grigio
+\definecolor{MyDarkBlue}{rgb}{0.,0.08,0.5} % blu scuro
+\definecolor{MyLightBlue}{rgb}{0.2,0.2,1.0} % blu chiaro
+\definecolor{MyDarkRed}{rgb}{0.5,0.04,0} % rosso scuro
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.08} % verde scuro
+\definecolor{SectionBlue}{rgb}{0.16,0.32,0.75} % blu per sezioni
+\definecolor{SubSectionBlue}{rgb}{0.0,0.53,0.74} % blu per sottosezioni
+\definecolor{SubSubSectionBlue}{rgb}{0.0,0.58,0.65} % blu per sottosottosezioni
+%------------------------------------------------------------------------------------
+\titleformat{\chapter}[display]
+  {\color{SectionBlue}\normalfont\LARGE\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+{\color{SectionBlue}\normalfont\Large\bfseries}
+{\color{SectionBlue}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{SubSectionBlue}\normalfont\Large\bfseries}
+{\color{SubSectionBlue}\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\color{SubSubSectionBlue}\normalfont\large\bfseries}
+{\color{SubSubSectionBlue}\thesubsubsection}{1em}{}
+\DeclareCaptionFont{myblue}{\color{SubSectionBlue}}
+\captionsetup{labelfont={myblue,bf}}
+%------------------------------------------------------------------------------------
+\newcommand{\myboldverb}[1]{{\color{MyDarkBlue}\bfseries{#1}}} % per enfasi in grassetto 
+\newcommand{\myverb}[1]{{\color{MyDarkBlue}\texttt{#1}}} % in evidenza
+\newcommand{\myurl}[1]{{\color{MyDarkGreen}\url{#1}}} % per url
+\newcommand{\quotesection}[1]{{\color{SectionBlue}\textbf{Sezione \ref{#1}}}}
+\newcommand{\quotesubsection}[1]{{\color{SubSectionBlue}\textbf{Sezione \ref{#1}}}}
+\newcommand{\quotesubsubsection}[1]{{\color{SubSubSectionBlue}\textbf{Sezione \ref{#1}}}}
+\newcommand{\quotefigure}[1]{{\color{MyDarkGreen}\textbf{Figura \ref{#1}}}}
+\newcommand{\quotetable}[1]{{\color{MyDarkGreen}\textbf{Tabella \ref{#1}}}}
+%------------------------------------------------------------------------------------
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	inner=2.5cm, % Inner margin
+	outer=3cm, % Outer margin
+	bindingoffset=0.5cm, % Binding offset
+	top=2.5cm, % Top margin
+	bottom=3cm, % Bottom margin
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+
+%------------------------------------------------------------------------------------
+%------------------------------ HERE WE GO ------------------------------------------
+%------------------------------------------------------------------------------------
+
+
+\begin{document}
+\title{THESIS TITLE}
+\author{Alberto Trashaj}
+\date{2023}
+
+%----------------------------- Frontispiece
+\newgeometry{margin=0.8in}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{0.2cm}
+        {\fontsize{19pt}{20pt}\selectfont \textbf{Alma Mater Studiorum - Università di Bologna}\par}
+    
+        \noindent\hrulefill
+        \vspace{0.8cm}
+        
+        \Large
+        
+        Departement of Statistical Science
+        
+        Curriculum Data Science
+        
+        \Large
+        \vspace{5cm}
+        {\fontsize{22.5pt}{22.5}\textcolor{MyDarkBlue}{\textbf{Stochastic Processes}}}
+
+        
+     
+        \vspace{4.5cm}
+        \begin{minipage}[t]{0.34\textwidth}
+        \begin{flushleft}
+        {\fontsize{16pt}{16pt}Presented by: \\ \textbf{\textcolor{MyDarkBlue}{Alberto Trashaj}}}
+        \end{flushleft}
+        \end{minipage}
+        
+        
+        \vfill
+        \noindent\hrulefill
+        \vspace{0.3cm}
+        \Large
+        
+        Appello {\textcolor{MyDarkBlue} {I}} 
+        
+        Anno Accademico {\textcolor{MyDarkBlue} {2022-2023}}
+    \end{center}
+\end{titlepage}
+\restoregeometry
+\vspace*{5cm}
+\begin{flushright}
+  {\parbox{4.2cm}{\textit{}}}
+\end{flushright}
+
+\thispagestyle{empty}
+%\newpage
+%-------------------------------------ABSTRACT
+%\thispagestyle{empty}
+\vspace*{5cm}
+\renewcommand{\abstractname}{\color{MyDarkBlue}{Abstract}} 
+\begin{abstract}
+Dear reader, thank you for your interest in my notes on stochastic processes. I have created these notes with care and attention to detail, attending every lecture and spending many hours outside of class to ensure their accuracy and clarity. While I do not wish to sell these notes, I would greatly appreciate any donation you may be willing to offer in exchange for their use. As a full-time student, attending these classes is a significant investment of time and resources for me, and your support would be greatly appreciated. Thank you for your consideration.
+If you have found these notes helpful, and would like to support my efforts in creating them, you can send a donation via PayPal to $\mathbf{trashajalberto@gmail.com}$. Your contribution will go a long way in helping me continue to create and share high-quality educational materials. Thank you again for your support.
+\end{abstract}
+%-------------------------------------INDEX
+\setcounter{page}{1}
+\pagenumbering{roman}
+\tableofcontents{}
+%\vspace*{2cm}
+%\setcounter{page}{1}
+%\pagenumbering{arabic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 1
+\include{cap1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 2
+\include{cap2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapter 3
+\include{cap3}
+
+
+%-------------------------------------REFERENCES
+\nocite{*}
+\bibliographystyle{mnras}
+\bibliography{biblio}
+
+\end{document}

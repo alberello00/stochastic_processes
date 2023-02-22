@@ -1,0 +1,199 @@
+\chapter{Introduction}
+\vspace*{0.5cm}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+
+\section{Definition}
+The first concept that we need to present in this course is the definition of stochastic process:
+    \begin{definition}[Stochastic process] 
+     A stochastic process is any collection of random variables 
+    \end{definition}    
+So, quite simple, no? \\
+Let's now briefly recall what is a random variables since it will be useful to understanding what we are talking about: \\
+
+A random variable is a measurable map defined as follows:\\
+$X: \Omega \longrightarrow S$ \\
+where we just recall that the triplet $(\Omega, \mathcal{A}, P)$ is the well known probability space and $(S, \mathcal{B})$ is the measurable space.\\
+In particular, $S$ is a set and $B$ is a $\sigma$-field of subset of $S$.
+\\
+It can be possible that you are not familiar with this concepts since some notion of the probability theory are needed, so if you have already problems with understanding what are we talking about pause the reading and try to comprehend the concept so far since they will be very useful for the rest of the course.
+\\
+\begin{verbatim}
+    Disclaimer: in the repository 
+    https://github.com/alberello00/stochastic_processes
+    you will find some notes of the course "Advanced probability" 
+    which can be useful 
+    to understanding some concepts.
+\end{verbatim}
+
+So far we just briefly recalled the two main ingredients for defining a random variable: another ingredient that has to be mentioned when defining what is a stochastic process is the set $T$. \\
+The set $T$ can be any set, but the most natural and intuitive set that we can think of is the $Time$ set. But, later on we will define better what $T$ actually is.
+\\
+To give a formal definition we can repeat that a stochastic process $X$ is any collection of random variables namely:
+\begin{center}
+    $X = {X_t: t \in T}$ \\
+    where $X_t: \Omega \longrightarrow S$ is a random variable $\forall t \in T$ 
+\end{center}
+\newpage
+Another parentheses should be opened here: in fact, if one remember what it actually is a random variable can point out that a random variable has to be a measurable map, i.e. the random variables that are in our stochastic processes has to be measurable too:\\
+\begin{center}
+    $X_t^{-1}(B) \in \mathcal{A}$   $\forall B\in \mathcal{B}$
+\end{center}
+where
+\begin{center}
+    $X_t^{-1}(B) = \{\omega \in \Omega: X_t(\omega) \in B\}$
+\end{center}
+\subsection{Remarks on $S$ and $T$}
+\begin{itemize}
+    \item $S$ is said to be the $\mathbf{state}$ $\mathbf{space}$ of the process: of course, the most important case is when the state space is equal to the real line, namely 
+    \begin{center}
+        $S=R$ and $B$ is the Borel $\sigma$-field on $R$
+    \end{center}
+    \item $T$ is an arbitrary set, which is usually called the $\bold{indexing}$ $\bold{set}$ of the $\bold{parameter}$ $\bold{space}$ of the process: a natural interpretation of this set can be thought as the $time$ set. 
+    \item If $T$ is a finite or countable set, $X$ is said to be a discrete time process: for example, a sequence of random variables.
+    \item If $T$ is an interval of the real line $\mathcal{R}$, $X$ is said to be a $\bold{continuous}$ $\bold{time}$ $\bold{process}$
+\end{itemize}
+
+\section{A process is a bivariate function}
+An important way to think of what is a stochastic process is that it is nothing else than a function of two variables:
+\begin{center}
+    $X: \Omega \times T \longrightarrow S$
+\end{center}
+So, we can write 
+\begin{center}
+    $X(\omega, t)$ or, equivalently, $X_t(\omega)$
+\end{center}
+
+So, since a stochastic process can be thought as a function of two variables let's see what happens if we fix one of the two variables and let one be freely tho change. 
+
+\begin{itemize}
+    \item Let fix $t \in T$: \\
+        Then, $X_t$ is still a random variable, namely a measurable function on $\Omega$.\\
+        Hence, we have 
+        \begin{center}
+            $X_t(\omega)$ $\forall \omega \in \Omega$
+        \end{center}
+    \item Let fix $\omega \in \Omega$: \\
+        Then, we obtain a function of $t$, namely:
+        \begin{center}
+            $t \longrightarrow X_t(\omega)$
+        \end{center}
+        This function is usually called the $\bold{path}$ or $\bold{trajectory}$ of the process.\\
+        For instance, if we choose the state process as $S = R$ and $T = [0, \infty)$: the path is a function that maps from $[0, \infty)$ into $\mathcal{R}$
+\end{itemize}
+
+\subsection{Another way to see what is a stochastic process}
+A process can be always regarded as a random function: it is sufficient to think of $X$ as the map $\omega \longrightarrow$ to the path associated to $\omega$, namely:
+\begin{center}
+    \begin{itemize}
+        \item $\omega$ $\longrightarrow$ $X(\omega, *)$
+    \end{itemize}
+\end{center}
+
+\section{Equality of the processes}
+One can wonder when two processes can be regarded as "equal", "similar" or, in a more general sense when two processes can be compared and see if they are in some sense indistinguishable.\\
+In general, we can say that there are three level of "equality" of two processes:
+\begin{enumerate}
+    \item $X \thicksim Y$ $\Rightarrow$ $(X_{t_1}, X_{t_2}, ...,X_{t_n}) \thicksim (Y_{t_1}, Y_{t_2}, ...,Y_{t_n}) $
+    \item $X$ is equal to $Y$ $\longleftrightarrow$ $P(X_t \neq Y_t) = 0$ $\forall$ $t \in T$
+    \item $X$ is indistinguishable from $Y$ $\longleftrightarrow$ $X_t(\omega) = Y_t(\omega)$ $\forall$ $t \in T$ and $\forall$ $\omega \in A$ where $A \in \mathcal{A}$ is such that $P(A) = 1$  
+\end{enumerate}
+The natural question that can pop out in our mind is if this three type of equality are in someway related:
+\begin{center}
+    We can state the following implications:\\
+    $3$ $\Rightarrow$ $2$ $\Rightarrow$ $1$ \\
+    $1$ $\nRightarrow$ $2$ $\nRightarrow$ $3$ 
+\end{center}
+\subsection{Equivalent doesn't imply indistinguishable}
+
+Usually to say that $A$ doesn't imply $B$, it is sufficient to prove that $A$ is true while $B$ is false.\\
+So, let's find an example where we have two processes that satisfies the second type of equality but not the third one.\\
+\begin{example}
+Let $V$ be any random variable such that $V \geq 0$ (positive-definite) and $P(V=v)=0$ $\forall$ $v \geq 0$.
+For instance, we can take the absolute value of a standard Gaussian, so $V = |Z|$ where $Z \thicksim N(0,1)$. 
+Now, let's define two random process: 
+\begin{itemize}
+    \item $X(t, \omega)= 0$ $\forall$ $t \in [0, +\infty)$ , $\forall$ $\omega \in \Omega$
+    \item\begin{equation}
+        Y(t, \omega)=\begin{cases}
+         1, & \text{if $t = V(\omega)$}.\\
+         0, & \text{otherwise}.
+  \end{cases}
+\end{equation}
+\end{itemize}
+Then, it's clear that $X$ and $Y$ are not indistinguishable since for $t = V(\omega)$ we get 
+\begin{center}
+    $Y(\omega, t)=1$ and $X(\omega, t)= 0$, so $X(\omega, t) \neq Y(\omega, t)$
+\end{center}
+However, with a close analysis, we can say that 
+\begin{center}
+    $P(X_t \neq Y_t) = P(Y_t \neq 0)$ since $X_t = 0$ as assumption, and also $Y_t \neq 0$ when $t = V(\omega)$, therefore the $P(Y_t \neq 0) = P(V(\omega)=t)$ that we know it's equal to $0$ since the probability of a point is $0$ by the assumption that $P(V=v) = 0$ $\forall$ $ v \geq 0$
+\end{center}
+So, in conclusion we showed that $X_t$ and $Y_t$ are equivalent processes but they are not indistinguishable
+\end{example}
+\section{Stopping times}
+Let take a set $T = {0,1,2,...}$ and the usual sample space $(\Omega, \mathcal{A}, \mathcal{P})$; then we define a $filtration$ as an increasing sequence of sub-$\sigma$ fields of $\mathcal{A}$, namely
+\begin{center}
+    $\mathcal{F_0} \subset \mathcal{F_1} \subset \mathcal{F_2} \subset ... \subset \mathcal{A}$. 
+\end{center}
+Given this ingredients we can give a formal definition of the stopping time
+\begin{definition}
+    A stopping time is a map
+    \begin{center}
+        $T: \Omega \Rightarrow \{+\infty, 0, 1, 2, ...\}$
+    \end{center}
+    such that $\{T=n\} \in \mathcal{F_n}$ $\forall n \geq 0$.
+\end{definition}
+In general, a $\sigma$-field $\mathcal{G} \subset \mathcal{A}$ may be used to describe the so called state of information. By now, it's not so clear what are we referring to when we talk about the "state of information" of $\mathcal{G}$, so let's make some examples:
+\begin{example}
+\begin{itemize}
+    \item $\mathcal{G} = \{\varnothing, \Omega \}$ contains null information since, by definition, we always know that the $\varnothing$ is always $False$ and the $\Omega$ is always $True$.
+    \item $\mathcal{G} = \{\varnothing, \Omega \, A, A^c\}$ in this set the only information we have is whether or not $A$ is $True$.
+\end{itemize}   
+\end{example}
+Now, I think that another example should clarify better what we mean by "state of the information":
+\begin{example}
+    Let's take $\Omega$ $= \{1,2,3,4,5,6\}$ and define a $\sigma$-algebra $\mathcal{F}$ $= \{\${1}$,${2,3}$${4,5}${$\varnothing$}, ${\{\Omega}\}\}$: now, we can see that, for example, the subset $\{1,2\}$ is not contained, so our probabilistic model can't make conclusion in this last set, so the "information" is contained only in the set $\mathcal{F}$. Therefore, the only "probabilistic" conclusion we can make are only in the $\sigma$-field we constructed before; there will no exists random variable that maps the subset $\{1,2\}$ on the interval $[0,1]$.
+\end{example}
+$T$ should be regarded as the first time when something we are interested actually happens: so, when we say that $T=n$ we are implicitly saying that at the time $n$ something happened for the first time. \\
+Remember when we defined the set where $T$ takes values? Yes, at first can seems strange to include the $+\infty$ but now it should be more clear that saying $T = +\infty$ means that something does not happen.
+
+\begin{example}
+    $(X_n)$ is a sequence of real random variable and $A \in \mathcal{B}(\mathcal{R})$; $T = inf\{n: X_n \in A\}$, so the first time $n$ such that $X_n \in A$. %to complete
+\end{example}
+
+\begin{example}[Casinò]
+
+   Suppose you and your friends are playing at a roulette table in a casino, and you want to come up with a strategy to maximize your winnings. You decide that you will keep playing until a certain point in time, at which you will stop and walk away with your winnings. The catch is that you don't know ahead of time when this stopping time will occur - it could happen after 10 minutes of playing, or it could happen after several hours.\\
+However, you have a secret weapon: a fortune teller who has told you that the stopping time will occur at the 10th round of the game. In other words, you will keep playing for 10 rounds, and then stop.\\
+In this example, the stopping time is the 10$th$ round of the game. This is a stopping time because it is determined by information that is available at or before the 10$th$ round of the game. Specifically, the information that you have received from the fortune teller is available to you before the 10$th$ round, and therefore the event ${T=10}$ (where $T$ is the stopping time) belongs to the sigma-algebra $\mathcal{F}_{10}$.   
+\end{example}
+
+
+
+
+\section{Finite dimensional distributions}
+\begin{definition}
+    Let $X$ be a process indexed by $T$ $\forall n\geq 1$ $\forall t_1, ..., t_n$ $\in$ $T$ we have a $n$-dimensional random variable $(X_{t_{1}}, X_{t_{2}}, ..., X_{t_{n}})$: the distributions of $(X_{t_{1}}, X_{t_{2}}, ..., X_{t_{n}})$ for all $n \geq 1$ and $\forall t_1, ..., t_n$ $\in$ $T$ are called finite dimensional distribution.
+\end{definition}
+
+\begin{example}
+    Suppose that $T = \{1,2\}$ and $X = \{X_1, X_2\}$: $X_1 \thicksim$ Binomial and $X_2 \thicksim$ Poisson. Then, for obvious reasons, $(X_1, X_2) \thicksim N$ it's not possible and such process fail to exist. 
+\end{example}
+
+Usually, in application we choose the finite dimensional distributions and we look for a process having such a finite dimensional distribution: the problem here arise since this process may not exist. \\
+However there are some theorem usually called $consistency$ theorems which provides conditions on the finite dimensional distributions under which the processes (with such finite dimensional distribution) exists.
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+\chapter{Martingales}
+\vspace*{0.5cm}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\section{Discrete time: Martingales}
+
+\begin{definition}
+Given a filtration $\mathfrak{F_0} \subset \mathfrak{F_1} \subset ... \subset \mathcal{A}$ and the sequence of $x_0,x_1,x_2,...$ real random variables: we say that ($X_n$) is a martingale with respect to $\mathfrak{F_n}$ if three condition are satisfied:
+\begin{enumerate}
+    \item $E|X_n| < +\infty$
+    \item $X_n$ is $\mathfrak{F_n}$-measurable
+    \item $E(X_{n+1}|\mathfrak{F_n})=X_n$
+\end{enumerate}
+\end{definition}
+
+Some remarks:
+\begin{itemize}
+    \item If $E(X_{n+1}|\mathfrak{F_n}) \geq X_n$, then ($X_n$) is called sub-martingale.
+    \item If $E(X_{n+1}|\mathfrak{F_n}) \leq X_n$ then ($X_n$) is called a super-martingale. \\
+    Obviously a martingale is both a sub-martingale and a super-martingale.
+    \item Let $\mathfrak{F_n}^*$ $=\sigma(X_0, X_1,..., X_n)$, this is the least sigma field that makes $(X_0, X_1,..., X_n)$ measurable: therefore, ($X_n$) is still a martingale with respect to ($\mathfrak{F_n}^*$).\\
+    In fact, since $\mathfrak{F_n}^* \subset \mathfrak{F_n}$, one obtains 
+    \begin{center}
+        $E(X_{n+1}|\mathfrak{F_n}^*) = E(E(X_{n+1}|\mathfrak{F_N})|\mathfrak{F_n}^*) = E(X_n | \mathfrak{F_n}^*) = X_n$ 
+    \end{center}
+    In the last expression we used respectively the chain rule, the definition of conditional expectation and the notion of measurability.
+\end{itemize}
+
+A simple theorem about martingales is described above:
+\begin{theorem}
+($X_n$) is a martingale is and only if $ \exists \subset \in \mathcal{R}$ and a $Z_n$ such  that $X_n = c + \sum_{i=0}^n Z_i$. \\
+For instance, $E|Z_i|<+\infty$, $Z_i$ is $\mathfrak{F_i}$ measurable and $E(Z_{i+1}|\mathfrak{F_i})=0$
+\end{theorem}
+
+A intuitive interpretation could be the following: imagine you are at the casinò, and $Z_i$ represent the outcome of the $i$-th trial $=$ the win at day $i$. $X_n$ is the amount of money in your pocket after you play $(n+1)$ times. \\
+If the game is $\bold{fair}$, $E(Z_{i+1}| \mathfrak{F_i})=0$
